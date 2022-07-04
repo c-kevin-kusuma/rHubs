@@ -4,7 +4,7 @@
 
 ## Overview
 
-Building an R package to deal with retrieving, analyzing, and updating data from HubSpot. This package is designed to pull and push data between 'R' and 'HubSpot' via 'API' calls using generated 'API Key'. In order to use this package, a valid 'HubSpot' instance and an account with sufficient access are required. All inputs and outputs in this package will be in dataframes. Functions in this package will automatically perform translations between 'JSON' and dataframe to match the required input and output of 'HubSpot' objects.
+Building an R package to deal with retrieving, analyzing, and updating data from HubSpot. This package is designed to pull and push data between R and HubSpot via API calls using generated API Key. In order to use this package, a valid HubSpot instance and an account with sufficient access are required. All inputs and outputs in this package will be in dataframes. Functions in this package will automatically perform translations between JSON and dataframe to match the required input and output of HubSpot objects.
 
 <br>
 
