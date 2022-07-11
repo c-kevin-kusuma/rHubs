@@ -73,7 +73,7 @@ deleted_companies <- deleteCompanies(apiKey = apiKey, companyId = companyId)
 <br>
 
 ## Examples to Convert Date to Unix
-HubSpot only accepts Unix-date format to the "Millisecond". It means that you'll need to convert your date fields to unix if you wish to create or update HubSpot objects
+HubSpot only accepts Unix-date format ("Millisecond"). It means that you'll need to convert your date fields to unix if you wish to create or update HubSpot objects with date-type properties.
 ```r
 # Create a dummy date value
 test_date <- as.Date('2022-01-01')
