@@ -1,9 +1,9 @@
 Package: rHubs
 Type: Package
 Title: Retrieve and update objects from 'HubSpot'
-Version: 0.1.0
+Version: 0.1.2
 Author: Christian Kevin Kusuma
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer: The package maintainer <c.kevin.kusuma@gmail.com>
 Description: 'HubSpot' is an American developer and marketer of software products for inbound marketing, sales, and customer service. This package is designed to pull and push data between 'R' and 'HubSpot' via 'API' calls using generated 'API Key'. In order to use this package, a valid 'HubSpot' instance and an account with sufficient access are required. All inputs and outputs in this package will be in dataframes. Functions in this package will automatically perform translations between 'JSON' and dataframe to match the required input and output of 'HubSpot' objects.
 License: `use_mit_license()`
 Encoding: UTF-8
@@ -15,6 +15,7 @@ Imports:
     rlist,
     jsonlite,
     lubridate,
-    vroom,
-    tidyverse
+    tidyverse,
+    magrittr,
+    stats
 RoxygenNote: 7.2.0
