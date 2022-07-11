@@ -4,16 +4,21 @@
 \alias{dealProperties}
 \title{Retrieve 'HubSpot' Deal Properties}
 \usage{
-dealProperties(apiKey = apiKey, maxOptions = 50)
+dealProperties(apiKey, maxOptions = 50, readOnlyValue = FALSE)
 }
 \arguments{
-\item{apiKey}{An API key that can be generated on a HubSpot instance.}
+\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
 
-\item{maxOptions}{The maximum number of options of a given property to be included in the output dataframe. Defaults to 50.}
+\item{maxOptions}{The maximum number of options of each property to be included in the output dataframe. Defaults to 50.}
+
+\item{readOnlyValue}{A Boolean or Logical input to specify whether to include the readOnlyValue properties or not. Defaults to 'FALSE' which excludes read-only properties. 'TRUE' will include read-only properties.}
 }
 \description{
-This function allows you to quickly retrieve Deal properties from 'HubSpot' via 'API' connection.
+This function allows you to quickly retrieve Deal properties from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-dealProperties <- dealProperties(apiKey = "demo", maxOptions = 100)
+dealProperties <- dealProperties(
+  apiKey = "demo",
+  maxOptions = 100,
+  readOnlyValue = TRUE)
 }

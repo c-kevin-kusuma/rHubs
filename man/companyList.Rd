@@ -5,21 +5,27 @@
 \title{Retrieve 'HubSpot' Current Companies}
 \usage{
 companyList(
-  apiKey = apiKey,
+  apiKey,
   properties = c("name", "website"),
-  limit = "Default"
+  limit = "No Limit",
+  offset = "First Page"
 )
 }
 \arguments{
-\item{apiKey}{An API key that can be generated on a HubSpot instance.}
+\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
 
-\item{properties}{A vector of character values corresponds to 'HubSpot' interval names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.}
+\item{properties}{A vector of character values corresponds to 'HubSpot' internal names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.}
 
-\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to no limit.}
+\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to "No Limit".}
+
+\item{offset}{'HubSpot' paginates the output of company list into batches of 100. If your 'HubSpot' instance have more than 100 companies, you will need to include the offset code to get the next batch of 100 companies. Offset value of the page will be included in the result of this function, you can then use that to get the next page and so on.}
 }
 \description{
-This function allows you to quickly retrieve company list from 'HubSpot' via 'API' connection.
+This function allows you to quickly retrieve company list from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-companyList <- companyList(apiKey = "demo", properties = c("name", "website", "is_public"), limit = 2)
+companyList <- companyList(
+  apiKey = "demo",
+  properties = c("name", "website", "is_public"),
+  limit = 2)
 }

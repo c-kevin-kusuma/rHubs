@@ -5,21 +5,24 @@
 \title{Retrieve 'HubSpot' Current Contacts}
 \usage{
 contactList(
-  apiKey = apiKey,
+  apiKey,
   properties = c("firstname", "lastname", "email", "company"),
-  limit = "Default"
+  limit = "No Limit"
 )
 }
 \arguments{
-\item{apiKey}{An API key that can be generated on a HubSpot instance.}
+\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
 
 \item{properties}{A vector of character values corresponds to 'HubSpot' interval names of the properties. Use 'contactProperties()' to check the internal names of the company properties. Defaults to 'c("firstname", "lastname", "email", "company")'.}
 
-\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to no limit.}
+\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to "No Limit".}
 }
 \description{
-This function allows you to quickly retrieve contact list from 'HubSpot' via 'API' connection.
+This function allows you to quickly retrieve contact list from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-contactList <- contactList(apiKey = "demo", properties = c("firstname", "lastname", "email", "company"), limit = 2)
+contactList <- contactList(
+  apiKey = "demo",
+  properties = c("firstname", "lastname", "email", "company"),
+  limit = 2)
 }
