@@ -69,3 +69,16 @@ update_report <- updateCompanies(apiKey = apiKey, data = data)
 ## "companyId" field must presents in the data input
 deleted_companies <- deleteCompanies(apiKey = apiKey, companyId = companyId)
 ```
+
+<br>
+
+## Examples to Convert Date to Unix
+HubSpot only accepts Unix-date format to the "Millisecond". It means that you'll need to convert your date fields to unix if you wish to create or update HubSpot objects
+```r
+# Create a dummy date value
+test_date <- as.Date('2022-01-01')
+
+# Convert the dummy date value to unix
+unixed_date <- dateToUnix(test_date, type = 'Millisecond') # HubSpot only accepts unix in "Millisecond"
+```
+
