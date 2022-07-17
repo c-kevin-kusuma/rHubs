@@ -7,7 +7,7 @@
 dealList(
   apiKey,
   properties = c("dealname", "dealstage", "amount", "closedate"),
-  limit = "No Limit",
+  limit = 100,
   offset = "First Page"
 )
 }
@@ -16,7 +16,7 @@ dealList(
 
 \item{properties}{A vector of character values corresponds to 'HubSpot' interval names of the properties. Use 'dealProperties()' to check the internal names of the company properties. Defaults to 'c("dealname", "dealstage", "amount", "closedate")'.}
 
-\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to "No Limit".}
+\item{limit}{An integer to limit the number of companies to be retrieved. Defaults to "100".}
 
 \item{offset}{'HubSpot' paginates the output of deal list into batches of 100. If your 'HubSpot' instance have more than 100 deals, you will need to include the offset code to get the next batch of 100 deals. Offset value of the page will be included in the result of this function, you can then use that to get the next page and so on.}
 }

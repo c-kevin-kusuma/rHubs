@@ -8,7 +8,7 @@
 #'   data = data)
 #' @export
 
-uupdateContacts <- function(apiKey, data) {
+updateContacts <- function(apiKey, data) {
   options(scipen=999)
 
   # Check Required Packages

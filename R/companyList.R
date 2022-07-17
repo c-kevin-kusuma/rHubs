@@ -3,7 +3,7 @@
 #' This function allows you to quickly retrieve company list from 'HubSpot' via 'API' connection and output them as a dataframe.
 #' @param apiKey An 'API' key that can be generated from a 'HubSpot' instance.
 #' @param properties A vector of character values corresponds to 'HubSpot' internal names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.
-#' @param limit An integer to limit the number of companies to be retrieved. Defaults to "No Limit".
+#' @param limit An integer to limit the number of companies to be retrieved. Defaults to "100".
 #' @param offset 'HubSpot' paginates the output of company list into batches of 100. If your 'HubSpot' instance have more than 100 companies, you will need to include the offset code to get the next batch of 100 companies. Offset value of the page will be included in the result of this function, you can then use that to get the next page and so on.
 #' @examples companyList <- companyList(
 #'   apiKey = "demo",
@@ -11,7 +11,7 @@
 #'   limit = 2)
 #' @export
 
-companyList <- function(apiKey, properties = c("name", "website"), limit = "No Limit", offset = "First Page") {
+companyList <- function(apiKey, properties = c("name", "website"), limit = 100, offset = "First Page") {
   options(scipen=999)
 
   # Check Required Packages
@@ -31,7 +31,7 @@ companyList <- function(apiKey, properties = c("name", "website"), limit = "No L
 
   properties = paste(paste0('&properties=', properties), collapse = '')
 
-  if(limit == "No Limit") {url = paste0('https://api.hubapi.com/companies/v2/companies/paged?hapikey=', apiKey, properties)}
+  if(limit == 100) {url = paste0('https://api.hubapi.com/companies/v2/companies/paged?hapikey=', apiKey, properties, '&limit=100')}
   else {url = paste0('https://api.hubapi.com/companies/v2/companies/paged?hapikey=', apiKey, properties, '&limit=', limit)}
 
   if(offset == "First Page") {url = url} else {url = paste0(url, '&offset=', offset)}
