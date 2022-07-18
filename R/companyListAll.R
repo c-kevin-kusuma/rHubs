@@ -12,13 +12,13 @@ companyListAll <- function(apiKey) {
 
   for (i in 1:9999999) {
     if (is.na(offset) == TRUE & has_more == TRUE) {
-      y <- rHubs::contactList(apiKey = apiKey)
+      y <- rHubs::companyList(apiKey = apiKey)
       offset <- y$offset[1]
       has_more <- y$has_more[1]
       companyListAll[[i]] <- y
     }
     else if (is.na(offset) == FALSE & has_more == TRUE) {
-      y <- rHubs::contactList(apiKey = apiKey, offset = offset)
+      y <- rHubs::companyList(apiKey = apiKey, offset = offset)
       offset <- y$offset[1]
       has_more <- y$has_more[1]
       companyListAll[[i]] <- y
