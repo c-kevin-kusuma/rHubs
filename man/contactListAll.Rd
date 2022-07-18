@@ -4,21 +4,14 @@
 \alias{contactListAll}
 \title{Retrieve ALL 'HubSpot' Current Contacts}
 \usage{
-contactListAll(
-  apiKey,
-  properties = c("firstname", "lastname", "email", "company")
-)
+contactListAll(apiKey)
 }
 \arguments{
 \item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
-
-\item{properties}{A vector of character values corresponds to 'HubSpot' interval names of the properties. Use 'contactProperties()' to check the internal names of the company properties. Defaults to 'c("firstname", "lastname", "email", "company")'.}
 }
 \description{
 This function allows you to quickly retrieve all contacts from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-contactListAll <- contactList(
-  apiKey = "demo",
-  properties = c("firstname", "lastname", "email", "company"))
+contactListAll <- contactListAll(apiKey = "demo")
 }
