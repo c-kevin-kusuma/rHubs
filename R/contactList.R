@@ -47,7 +47,7 @@ contactList <- function(apiKey, properties = c("firstname", "lastname", "email",
     propertyValue <- allContactsRaw$contacts[[i]]$properties %>% rlist::list.stack() %>% suppressWarnings() %>% dplyr::select(value)
     contList[[i]] <- dplyr::tibble(vid = vid, propertyName = propertyName, propertyValue = propertyValue$value) }
 
-  contList <- bind_rows(contList)
+  contList <- dplyr::bind_rows(contList)
   contList <- contList %>% tidyr::pivot_wider(id_cols = vid, names_from = propertyName, values_from = propertyValue, names_sort = TRUE)
   contList <- dplyr::tibble(has_more = has_more, offset = offsetValue, contList)
 
