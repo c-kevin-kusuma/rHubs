@@ -11,8 +11,8 @@
 #' @export
 
 dateToUnix <- function(date, tz = "GMT", type = "Second") {
-  timeZone <- case_when(tz == 'GMT' ~ 'GMT', TRUE ~ tz)
-  secondType <- case_when(type == 'Second' ~ 1, type == 'Millisecond' ~ 1000, type == 'Microsecond' ~ 1000000, type == 'Nanosecond' ~ 1000000000, TRUE ~ 1)
+  timeZone <- dplyr::case_when(tz == 'GMT' ~ 'GMT', TRUE ~ tz)
+  secondType <- dplyr::case_when(type == 'Second' ~ 1, type == 'Millisecond' ~ 1000, type == 'Microsecond' ~ 1000000, type == 'Nanosecond' ~ 1000000000, TRUE ~ 1)
   a <- as.Date(date)
   a <- as.POSIXct(a, tz = timeZone)
   a <- as.numeric(a) * secondType

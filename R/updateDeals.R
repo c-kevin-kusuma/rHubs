@@ -34,7 +34,7 @@ updateDeals <- function(apiKey, data) {
     dealId <- data$dealId[i]
     x <- data[i, ] %>% dplyr::select(-dealId) %>% dplyr::mutate(dplyr::across(dplyr::everything(), as.character))
 
-    pre_json <- x %>% tidyr::pivot_longer(cols = colnames(x), names_to = 'name', values_to = 'value', values_drop_na = TRUE) %>% filter(value != '')
+    pre_json <- x %>% tidyr::pivot_longer(cols = colnames(x), names_to = 'name', values_to = 'value', values_drop_na = TRUE) %>% dplyr::filter(value != '')
     post_json <- jsonlite::toJSON(list(properties = pre_json), pretty = TRUE, auto_unbox = TRUE)
 
     hubSpotOutput <- httr::PUT(url = paste0('https://api.hubapi.com/deals/v1/deal/', dealId, '?hapikey=', apiKey), body = post_json, httr::add_headers(.headers = c("Content-Type"="application/json")))
