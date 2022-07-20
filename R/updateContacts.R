@@ -44,9 +44,9 @@ updateContacts <- function(apiKey, data) {
 
     if(statusCode %in% c(200, 204)) {updateList[[i]] <- dplyr::tibble(rowid = i, vid = as.character(vid), statusCode = statusCode, property = 'Relevant properties have been updated', value = 'Relevant values have been updated', mainMessage = 'Contact has been updated', propertyMessage = 'Successful', propertyError = 'No Error')}
     else {
-      contactMessage <- dplyr::tibble(rowid = i, vid = 'Not Updated', statusCode = statusCode, pre_json, mainMessage = outputContent$message)
+      contactMessage <- dplyr::tibble(rowid = i, vid = 'Not Updated', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% mutate(property1 = tolower(property))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, property = name) %>% dplyr::select(-isValid)
-      updateList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('property'='property')) %>% stats::na.omit() }
+      updateList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('property1'='property')) %>% dplyr::select(-property1) %>%  stats::na.omit() }
   }
 
   updateList <- dplyr::bind_rows(updateList)

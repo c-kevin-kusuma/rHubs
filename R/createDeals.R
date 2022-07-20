@@ -44,9 +44,9 @@ createDeals <- function(apiKey, data) {
 
     if(statusCode == 200) {addList[[i]] <- dplyr::tibble(rowid = i, dealname = dealName, dealId = as.character(outputContent$dealId), statusCode = statusCode, property = 'All properties have been added', value = 'All Values have been added', mainMessage = 'Contact has been added', propertyMessage = 'Successful', propertyError = 'No Error')}
     else {
-      contactMessage <- dplyr::tibble(rowid = i, dealname = dealName, dealId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message)
+      contactMessage <- dplyr::tibble(rowid = i, dealname = dealName, dealId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% mutate(name1 = tolower(name))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, name = name) %>% dplyr::select(-isValid)
-      addList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('name'='name')) %>% stats::na.omit() }
+      addList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('name1'='name')) %>% dplyr::select(-name1) %>% stats::na.omit() }
   }
 
   addList <- dplyr::bind_rows(addList)
