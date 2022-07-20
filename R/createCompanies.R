@@ -44,7 +44,7 @@ createCompanies <- function(apiKey, data) {
 
     if(statusCode == 200) {addList[[i]] <- dplyr::tibble(rowid = i, companyName = companyName, companyId = as.character(outputContent$companyId), statusCode = statusCode, property = 'All properties have been created', value = 'All Values have been created', mainMessage = 'Company has been created', propertyMessage = 'Successful', propertyError = 'No Error')}
     else {
-      companyMessage <- dplyr::tibble(rowid = i, companyName = companyName, companyId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% mutate(name1 = tolower(name))
+      companyMessage <- dplyr::tibble(rowid = i, companyName = companyName, companyId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% dplyr::mutate(name1 = tolower(name))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, name = name) %>% dplyr::select(-isValid)
       addList[[i]] <- dplyr::left_join(companyMessage, propertyMessage, by = c('name1'='name')) %>% dplyr::select(-name1) %>%  stats::na.omit() }
   }

@@ -45,7 +45,7 @@ createContacts <- function(apiKey, data) {
     if(statusCode == 200) {addList[[i]] <- dplyr::tibble(rowid = i, email = contactEmail, vid = as.character(outputContent$vid), statusCode = statusCode, property = 'All properties have been added', value = 'All Values have been added', mainMessage = 'Contact has been added', propertyMessage = 'Successful', propertyError = 'No Error')}
     else if(statusCode == 409) {addList[[i]] <- dplyr::tibble(rowid = i, email = contactEmail, vid = 'No execution', statusCode = statusCode, property = 'Contact already exists', value = 'Contact already exists', mainMessage = outputContent$message, propertyMessage = 'No execution', propertyError = 'No execution')}
     else if(statusCode == 400) {
-      contactMessage <- dplyr::tibble(rowid = i, email = contactEmail, vid = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% mutate(property1 = tolower(property))
+      contactMessage <- dplyr::tibble(rowid = i, email = contactEmail, vid = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% dplyr::mutate(property1 = tolower(property))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, property = name) %>% dplyr::select(-isValid)
       addList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('property1'='property')) %>% dplyr::select(-property1) %>%  stats::na.omit() }
   }
