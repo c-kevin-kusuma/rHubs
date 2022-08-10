@@ -23,6 +23,7 @@ This function allows you to quickly create associations between objects on 'HubS
 \examples{
 result <- asCrm(
   apiKey = apiKey,
+  action = "Add",
   from = vid,
   to = companyId,
   definitionId = 1)

@@ -8,6 +8,7 @@
 #' @param definitionId The ID that codifies what assciation to be made. See \href{https://legacydocs.hubspot.com/docs/methods/crm-associations/crm-associations-overview}{HubSpot Documentation}
 #' @examples result <- asCrm(
 #'   apiKey = apiKey,
+#'   action = "Add",
 #'   from = vid,
 #'   to = companyId,
 #'   definitionId = 1)
