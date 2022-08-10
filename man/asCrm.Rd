@@ -4,10 +4,12 @@
 \alias{asCrm}
 \title{Associate 'CRM' Object}
 \usage{
-asCrm(apiKey, from, to, definitionId)
+asCrm(apiKey, action, from, to, definitionId)
 }
 \arguments{
 \item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+
+\item{action}{Valid values are "Add" & "Delete".}
 
 \item{from}{The internal ID of the object to be associated from.}
 
