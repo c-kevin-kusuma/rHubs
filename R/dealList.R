@@ -45,11 +45,10 @@ dealList <- function(apiKey, properties = c("dealname", "dealstage", "amount", "
   for (i in 1:length(allDealsRaw$deals)) {
     dealId <- allDealsRaw$deals[[i]]$dealId
     propertyName <- allDealsRaw$deals[[i]]$properties %>% names()
-    associationName <- allDealsRaw$deals[[i]]$associations %>% names()
+    # associationName <- allDealsRaw$deals[[i]]$associations %>% names()
     propertyValue <- allDealsRaw$deals[[i]]$properties %>% rlist::list.stack() %>% suppressWarnings() %>% dplyr::select(value)
-    if(nrow(rlist::list.stack(allDealsRaw$deals[[i]]$associations))==0) {associationValue <- dplyr::tibble(value = '')} else {associationValue <- allDealsRaw$deals[[i]]$associations %>% rlist::list.stack() %>% suppressWarnings() %>% dplyr::select(value)}
-    deaList[[i]] <- dplyr::bind_rows(dplyr::tibble(dealId = dealId, propertyName = propertyName, propertyValue = propertyValue$value),
-                                     dplyr::tibble(dealId = dealId, propertyName = associationName, propertyValue = associationValue$value)) }
+    # if(nrow(rlist::list.stack(allDealsRaw$deals[[i]]$associations))==0) {associationValue <- dplyr::tibble(value = '')} else {associationValue <- allDealsRaw$deals[[i]]$associations %>% rlist::list.stack() %>% suppressWarnings() %>% dplyr::select(value)}
+    deaList[[i]] <- dplyr::tibble(dealId = dealId, propertyName = propertyName, propertyValue = propertyValue$value)  }
 
   deaList <- dplyr::bind_rows(deaList)
   deaList <- deaList %>% tidyr::pivot_wider(id_cols = dealId, names_from = propertyName, values_from = propertyValue, names_sort = TRUE)
