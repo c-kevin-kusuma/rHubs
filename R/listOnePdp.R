@@ -14,8 +14,9 @@ listOnePdp <- function(data) {
   longFilters <- x$`Policy Value` %>% strsplit('|', fixed = TRUE) %>% unlist()
   longUsers <- x$`User ID` %>% strsplit('|', fixed = TRUE) %>% unlist()
   for (i in 1:length(longFilters)) {filters[[i]] <- list(column = x$`Policy Column`, values = list(longFilters[i]), operator = 'EQUALS', not = FALSE) } # Create Filters
-  for (i in 1:length(longUsers)) {users[[i]] <- as.integer(longUsers) } # Create Users
+  for (i in 1:length(longUsers)) {users[[i]] <- as.integer(longUsers[i]) } # Create Users
   pdpList <- list(id = id, type = 'user', name = x$`Policy Name`, filters = filters, users = users, virtualUsers = list(), groups = list())
   if('Policy ID' %!in% colnames(x)){pdpList$id <- NULL}
   return(pdpList)
 }
+
