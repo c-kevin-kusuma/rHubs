@@ -43,6 +43,7 @@ updateCompanies <- function(apiKey, data){
     statusCode <- hubSpotOutput %>% httr::status_code()
 
     if(statusCode == 200) {updateList[[i]] <- dplyr::tibble(rowid = i, companyId = as.character(companyId), statusCode = statusCode, property = 'Relevant properties have been updated', value = 'Relevant values have been updated', mainMessage = 'Company has been updated', propertyMessage = 'Successful', propertyError = 'No Error')}
+    else if(statusCode == 404) {updateList[[i]] <- dplyr::tibble(rowid = i, companyId = as.character(companyId), statusCode = statusCode, property = '', value = '', mainMessage = outputContent$subCategory,  propertyMessage = outputContent$message, propertyError = outputContent$status)}
     else {
       contactMessage <- dplyr::tibble(rowid = i, companyId = as.character(companyId), statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% dplyr::mutate(name1 = tolower(name))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, name = name) %>% dplyr::select(-isValid)
