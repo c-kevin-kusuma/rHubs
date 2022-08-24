@@ -43,7 +43,8 @@ createCompanies <- function(apiKey, data) {
     statusCode <- hubSpotOutput %>% httr::status_code()
 
     if(statusCode == 200) {addList[[i]] <- dplyr::tibble(rowid = i, companyName = companyName, companyId = as.character(outputContent$companyId), statusCode = statusCode, property = 'All properties have been created', value = 'All Values have been created', mainMessage = 'Company has been created', propertyMessage = 'Successful', propertyError = 'No Error')}
-    else {
+    else if(statusCode == 409) {addList[[i]] <- dplyr::tibble(rowid = i, companyName = companyName, companyId = 'No execution', statusCode = statusCode, property = 'Company already exists', value = 'Company already exists', mainMessage = outputContent$message, propertyMessage = 'No execution', propertyError = 'No execution')}
+    else if(statusCode == 400) {
       companyMessage <- dplyr::tibble(rowid = i, companyName = companyName, companyId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% dplyr::mutate(name1 = tolower(name))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, name = name) %>% dplyr::select(-isValid)
       addList[[i]] <- dplyr::left_join(companyMessage, propertyMessage, by = c('name1'='name')) %>% dplyr::select(-name1) %>%  stats::na.omit() }

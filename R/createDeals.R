@@ -43,7 +43,8 @@ createDeals <- function(apiKey, data) {
     statusCode <- hubSpotOutput %>% httr::status_code()
 
     if(statusCode == 200) {addList[[i]] <- dplyr::tibble(rowid = i, dealname = dealName, dealId = as.character(outputContent$dealId), statusCode = statusCode, property = 'All properties have been added', value = 'All Values have been added', mainMessage = 'Contact has been added', propertyMessage = 'Successful', propertyError = 'No Error')}
-    else {
+    else if(statusCode == 409) {addList[[i]] <- dplyr::tibble(rowid = i, dealname = dealname, dealId = 'No execution', statusCode = statusCode, property = 'Deal already exists', value = 'Deal already exists', mainMessage = outputContent$message, propertyMessage = 'No execution', propertyError = 'No execution')}
+    else if(statusCode == 400) {
       contactMessage <- dplyr::tibble(rowid = i, dealname = dealName, dealId = 'Not Created', statusCode = statusCode, pre_json, mainMessage = outputContent$message) %>% dplyr::mutate(name1 = tolower(name))
       propertyMessage <- outputContent$validationResults %>% rlist::list.stack() %>% dplyr::rename(propertyMessage = message, propertyError = error, name = name) %>% dplyr::select(-isValid)
       addList[[i]] <- dplyr::left_join(contactMessage, propertyMessage, by = c('name1'='name')) %>% dplyr::select(-name1) %>% stats::na.omit() }
