@@ -4,10 +4,10 @@
 \alias{deleteDeals}
 \title{Delete Contacts on 'HubSpot'}
 \usage{
-deleteDeals(apiKey, dealId)
+deleteDeals(accessToken, dealId)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 
 \item{dealId}{Values that represent the internal IDs of the deals on your 'HubSpot' instance.}
 }
@@ -16,6 +16,6 @@ This is a DESTRUCTIVE method which is not a best practice because Deals play a c
 }
 \examples{
 output <- deleteDeals(
-  apiKey = apiKey,
+  accessToken = accessToken,
   dealId = dealId)
 }

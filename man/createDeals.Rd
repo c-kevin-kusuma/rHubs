@@ -4,10 +4,10 @@
 \alias{createDeals}
 \title{Create or Add New Deals on 'HubSpot'}
 \usage{
-createDeals(apiKey, data)
+createDeals(accessToken, data)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 
 \item{data}{A dataframe that contains the deal's name and the properties associated with the new deal. The field names in the data must match (case sensitive) the property's internal name on HubSpot', use 'dealProperties()'.}
 }
@@ -16,6 +16,6 @@ This function allows you to create or add new deals from a dataframe to 'HubSpot
 }
 \examples{
 output <- createDeals(
-  apiKey = apiKey,
+  accessToken = accessToken,
   data = data)
 }

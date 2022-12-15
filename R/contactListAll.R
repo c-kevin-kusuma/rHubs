@@ -1,29 +1,30 @@
-#' Retrieve ALL 'HubSpot' Current Contacts
+#' Retrieve ALL 'HubSpot' Current Companies
 #'
-#' This function allows you to quickly retrieve all contacts from 'HubSpot' via 'API' connection and output them as a dataframe.
-#' @param apiKey An 'API' key that can be generated from a 'HubSpot' instance.
-#' @examples contactListAll <- contactListAll(apiKey = "demo")
+#' This function allows you to quickly retrieve all companies from 'HubSpot' via 'API' connection and output them as a dataframe.
+#' @param accessToken An 'Access Token' can be generated from a 'HubSpot' instance through a private app.
+#' @param properties A vector of character values corresponds to 'HubSpot' internal names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.
+#' @examples contactListAll <- contactListAll(accessToken = "accessToken")
 #' @export
 
-contactListAll <- function(apiKey) {
-  offset <- NA
-  has_more <- TRUE
+contactListAll <- function(accessToken, properties = c("name", "website")) {
+  has_more <- 'Yes'
+  after <- NA
   contactListAll <- list()
 
-  for (i in 1:9999999) {
-    if (is.na(offset) == TRUE & has_more == TRUE) {
-      y <- rHubs::contactList(apiKey = apiKey)
-      offset <- y$offset[1]
+  for (i in 1:9999999999999) {
+    if (!is.na(has_more) & is.na(after)) {
+      y <- rhubs::contactList(accessToken = accessToken, limit = 100, properties = properties)
+      after <- y$after[1]
       has_more <- y$has_more[1]
       contactListAll[[i]] <- y
     }
-    else if (is.na(offset) == FALSE & has_more == TRUE) {
-      y <- rHubs::contactList(apiKey = apiKey, offset = offset)
-      offset <- y$offset[1]
+    else if (!is.na(has_more) & !is.na(after)) {
+      y <- rhubs::contactList(accessToken = accessToken, limit = 100, properties = properties, after = after)
+      after <- y$after[1]
       has_more <- y$has_more[1]
       contactListAll[[i]] <- y
     }
-    else if (has_more == FALSE) {
+    else if (is.na(has_more)) {
       break
     }
   }

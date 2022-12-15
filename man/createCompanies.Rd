@@ -4,10 +4,10 @@
 \alias{createCompanies}
 \title{Create or Add New Companies on 'HubSpot'}
 \usage{
-createCompanies(apiKey, data)
+createCompanies(accessToken, data)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 
 \item{data}{A dataframe that contains the company's name and the properties associated with the new company. The field names in the data must match (case sensitive) the property's internal name on HubSpot', use 'companyProperties()'.}
 }
@@ -16,6 +16,6 @@ This function allows you to create or add new companies from a dataframe to 'Hub
 }
 \examples{
 output <- createCompanies(
-  apiKey = apiKey,
+  accessToken = accessToken,
   data = data)
 }

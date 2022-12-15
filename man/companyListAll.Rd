@@ -4,14 +4,16 @@
 \alias{companyListAll}
 \title{Retrieve ALL 'HubSpot' Current Companies}
 \usage{
-companyListAll(apiKey)
+companyListAll(accessToken, properties = c("name", "website"))
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
+
+\item{properties}{A vector of character values corresponds to 'HubSpot' internal names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.}
 }
 \description{
 This function allows you to quickly retrieve all companies from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-companyListAll <- companyListAll(apiKey = "demo")
+companyListAll <- companyListAll(accessToken = "accessToken")
 }

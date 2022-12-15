@@ -4,14 +4,14 @@
 \alias{dealListAll}
 \title{Retrieve ALL 'HubSpot' Current Deals}
 \usage{
-dealListAll(apiKey)
+dealListAll(accessToken)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 }
 \description{
 This function allows you to quickly retrieve all deals from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-dealListAll <- dealListAll(apiKey = "demo")
+dealListAll <- dealListAll(accessToken = accessToken)
 }

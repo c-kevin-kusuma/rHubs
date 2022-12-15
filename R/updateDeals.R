@@ -1,7 +1,7 @@
 #' Update Deals' Properties on 'HubSpot'
 #'
 #' This function allows you to update the properties of deals from a dataframe on 'HubSpot' via 'API' connection.
-#' @param apiKey An 'API' key that can be generated from a 'HubSpot' instance.
+#' @param accessToken An 'Access Token' can be generated from a 'HubSpot' instance through a private app.
 #' @param data A dataframe that contains the internal IDs of the deals and the properties associated with the deals. The field names in the data must match (case sensitive) the property's internal name on HubSpot', use 'dealProperties()'.
 #' @examples output <- updateDeals(
 #'   apiKey = apiKey,

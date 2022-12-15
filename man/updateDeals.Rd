@@ -7,9 +7,9 @@
 updateDeals(apiKey, data)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
-
 \item{data}{A dataframe that contains the internal IDs of the deals and the properties associated with the deals. The field names in the data must match (case sensitive) the property's internal name on HubSpot', use 'dealProperties()'.}
+
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 }
 \description{
 This function allows you to update the properties of deals from a dataframe on 'HubSpot' via 'API' connection.

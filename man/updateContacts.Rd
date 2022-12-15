@@ -4,10 +4,10 @@
 \alias{updateContacts}
 \title{Update Contacts' Properties on 'HubSpot'}
 \usage{
-updateContacts(apiKey, data)
+updateContacts(accessToken, data)
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
 
 \item{data}{A dataframe that contains the internal IDs of the contacts and the properties associated with the contacts. The field names in the data must match (case sensitive) the property's internal name on HubSpot', use 'contactProperties()'.}
 }
@@ -16,6 +16,6 @@ This function allows you to update the properties of contacts from a dataframe o
 }
 \examples{
 output <- updateContacts(
-  apiKey = apiKey,
+  accessToken = accessToken,
   data = data)
 }

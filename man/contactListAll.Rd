@@ -2,16 +2,18 @@
 % Please edit documentation in R/contactListAll.R
 \name{contactListAll}
 \alias{contactListAll}
-\title{Retrieve ALL 'HubSpot' Current Contacts}
+\title{Retrieve ALL 'HubSpot' Current Companies}
 \usage{
-contactListAll(apiKey)
+contactListAll(accessToken, properties = c("name", "website"))
 }
 \arguments{
-\item{apiKey}{An 'API' key that can be generated from a 'HubSpot' instance.}
+\item{accessToken}{An 'Access Token' can be generated from a 'HubSpot' instance through a private app.}
+
+\item{properties}{A vector of character values corresponds to 'HubSpot' internal names of the properties. Use 'companyProperties()' to check the internal names of the company properties. Defaults to 'c("name", "website")'.}
 }
 \description{
-This function allows you to quickly retrieve all contacts from 'HubSpot' via 'API' connection and output them as a dataframe.
+This function allows you to quickly retrieve all companies from 'HubSpot' via 'API' connection and output them as a dataframe.
 }
 \examples{
-contactListAll <- contactListAll(apiKey = "demo")
+contactListAll <- contactListAll(accessToken = "accessToken")
 }
